@@ -29,4 +29,5 @@ Cheftab::Application.configure do
   config.action_mailer.default_url_options = {:host => 'http://localhost:3000'}
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
+  config.assets.compile = true
 end
