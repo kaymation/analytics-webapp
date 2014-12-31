@@ -7,10 +7,11 @@ class RestaurantsController < ApplicationController
     @signedin = 0
     @restaurants = Restaurant.all
     # respond_with(@restaurants)
-     if @signedin = 0
-      render "home/index.html.erb" and return
-    end
-    render :index 
+     if user_signed_in?
+      render :index and return
+    else
+       render  "home/index.html.erb"
+     end
   end
 
   def show

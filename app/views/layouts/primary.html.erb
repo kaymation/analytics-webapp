@@ -46,14 +46,14 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">Cheftab</a>
+          <a class="brand" href="/home">Cheftab</a>
           <div class="container nav-collapse pull-right">
             <ul class="nav">
               <li><%= link_to "Home", :root  %></li>
               <li><%= link_to "API", "/apitest"  %></li>
               <li><%= link_to "Contact", "/contact"  %></li>
-              <li><%= link_to "Register", "/register"  %></li>
-              <li><%= link_to "Login", "/login"  %></li>
+              <li><%= link_to "Register", "/users/sign_up"  %></li>
+              <li><%= link_to "Login", "/users/sign_in"  %></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -61,6 +61,8 @@
     </div>
    <%= bootstrap_flash %>
     <div class="container">
+      <p class="notice"><%= notice %></p>
+          <p class="alert"><%= alert %></p>
             <%= yield %>
 
       <footer>
