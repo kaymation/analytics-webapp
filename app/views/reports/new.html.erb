@@ -1,0 +1,77 @@
+<%- model_class = Report -%>
+      
+		  <div class="row-fluid">
+		    <div class="span6">
+
+		      <div class="page-header">
+		        <h1>Adding a Report</h1>
+		      </div>
+
+		      <p>Adding a report is done through an HTTP URL in the following form:</p>
+
+		      <pre>http://cheftab-demo.appspot.com/reports/&lt;user&gt;/&lt;restaurant&gt;</pre>
+
+		      <p>where the parameters are in the following form:</p>
+
+		      <ul>
+		        <li><code>user</code> contains the users ID</li>
+		        <li><code>restaurant</code> contains the restaurants ID</li>
+		      </ul>
+
+		      <p>Certain parameters are required in the request's body.</p>
+
+		      <p><strong>Request Body</strong></p>
+		      
+		      <ul>
+		        <li><code>device</code> - the device_id of the device making the request.</li>
+		        <li><code>reports</code> - a list of reports as a JSON string.</li>
+		      </ul>
+
+		      <p><strong>Reports</strong></p>
+
+		      <p>A JSON string in the following format:</p>
+
+		      <pre>[
+{"date": "2011-04-27", "value": 5490},
+{"date": "2011-04-28", "value": 2344},
+		  ...
+]</pre>
+
+		      <p>Each activity has the following properties:</p>
+
+		      <ul>
+		        <li><code>date</code> - A date string in the format YYYY-MM-DD.</li>
+		        <li><code>value</code> - A number value.</li>
+		      </ul>
+
+		      <p><strong>Response</strong></p>
+
+		      <p>A successful POST request will return a JSON object with the following properties</p>
+
+		      <ul>
+		        <li><code>success</code> - True or False, depending on whether it was successful</li>
+		        <li><code>key</code> - If the request was successful, this is the alphanumeric key of the new activity</li>
+		      </ul>
+
+		      <p>Example:</p>
+
+		      <pre>{
+"success": true,
+"key": "..."
+}</pre>
+
+		    </div>
+
+		    <div class="span6">
+
+		      <div class="page-header">
+		        <h1>Test</h1>
+		      </div>
+
+		      <p>You can test the API by using the form below. Fill in the <strong>User ID</strong> and <strong>Restaurant ID</strong> for the restaurant you want to submit to.</p>
+				<%= render :partial => 'form' %>
+
+		    </div>
+
+		  </div>
+ 

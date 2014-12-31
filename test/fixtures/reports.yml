@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  device: 1
+  date: 2014-12-30
+  value: 1
+  restaurant_id: 1
+  user_id: 1
+
+two:
+  device: 1
+  date: 2014-12-30
+  value: 1
+  restaurant_id: 1
+  user_id: 1
