@@ -32,6 +32,20 @@ class RestaurantsController < ApplicationController
     respond_with(@restaurant)
   end
 
+  def devices
+  end
+
+  def upload
+  end
+
+  def reports
+  end
+
+  def connect
+  end
+
+  
+
   def update
     @restaurant.update(restaurant_params)
     respond_with(@restaurant)

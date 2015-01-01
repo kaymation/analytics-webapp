@@ -1,3 +1,5 @@
+<%= render layout: "restview" do %>
+
 <div class="span9">
 
     
@@ -5,7 +7,7 @@
       <ul class="nav nav-pills">
 
         
-  <li class="active"><%= link_to "Overview", :show %></li>
+  <li class="active"><%= link_to "Overview", :action => :show %></li>
 
         
   <li><%= link_to "Connect", :action => :connect %></li>
@@ -26,3 +28,5 @@
 
 
     </div>
+
+    <% end %>
