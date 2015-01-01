@@ -28,6 +28,7 @@ class RestaurantsController < ApplicationController
 
   def create
     @restaurant = Restaurant.new(restaurant_params)
+    @restaurant.user_id = current_user.id
     @restaurant.save
     respond_with(@restaurant)
   end
@@ -44,7 +45,7 @@ class RestaurantsController < ApplicationController
   def connect
   end
 
-  
+
 
   def update
     @restaurant.update(restaurant_params)
