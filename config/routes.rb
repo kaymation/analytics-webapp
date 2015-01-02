@@ -13,6 +13,16 @@ Cheftab::Application.routes.draw do
 
   get '/home' => 'restaurants#index'
 
+  get '/restaurants/:id/connect', to: 'restaurants#connect'
+
+  get '/restaurants/:id/devices/', to: 'restaurants#devices'
+
+  get '/restaurants/:id/upload', to: 'restaurants#upload'
+
+  get '/restaurants/:id/reports', to: 'restaurants#reports'
+
+  get '/restaurants/:id/show', to: 'restaurants#show'
+
   get '/apitest' => 'reports#new'
 
   post '/reports/:user_id/:restaurant_id', to: 'reports#create'
@@ -20,6 +30,10 @@ Cheftab::Application.routes.draw do
   get '/contact', to: 'inquiry#index'
 
   get '/inquiry/send_mail', to: 'inquiry#send_mail'
+
+  delete 'reports/:id', to: 'report#delete'
+
+
 
 
   # Example of regular route:

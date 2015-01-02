@@ -14,8 +14,9 @@
 
       <!-- Nav tabs -->
       <ul class="nav nav-pills nav-stacked">
-        
-        
+        <% @listing.each do  |r| %>
+        <li> <%= link_to r.name, "/restaurants/#{r.id}/show" %></li>
+        <% end %>
         <li><a href="/restaurants/new"><span class="glyphicon glyphicon-plus"></span> Add Restaurant</a></li>
       </ul>
       <br>

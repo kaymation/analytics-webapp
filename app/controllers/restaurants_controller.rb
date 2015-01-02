@@ -1,13 +1,20 @@
 class RestaurantsController < ApplicationController
-  before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
+  before_action :set_restaurant, only: [:show, :edit, :update, :destroy, :connect, :devices, :upload, :reports]
+  before_action :pull_listing
 
   respond_to :html
+
+def pull_listing
+  @activepage = request.env['PATH_INFO']
+  @listing = Restaurant.where( user_id: current_user.id).order('created_at DESC')
+end
 
   def index
     @signedin = 0
     @restaurants = Restaurant.all
     # respond_with(@restaurants)
      if user_signed_in?
+      # @listing = Restaurant.where( user_id: current_user.id).order('created_at DESC')
       render :index and return
     else
        render  "home/index.html.erb"
@@ -15,6 +22,7 @@ class RestaurantsController < ApplicationController
   end
 
   def show
+    # @listing = Restaurant.where( user_id: current_user.id).order('created_at DESC')
     respond_with(@restaurant)
   end
 
@@ -34,15 +42,19 @@ class RestaurantsController < ApplicationController
   end
 
   def devices
+    @reports = Report.where(restaurant_id: @restaurant.id)
+    @ids = @reports.map{|e| e.device}
   end
 
   def upload
   end
 
   def reports
+    @reports = Report.where(restaurant_id: @restaurant.id)
   end
 
   def connect
+    respond_with(@restaurant)
   end
 
 

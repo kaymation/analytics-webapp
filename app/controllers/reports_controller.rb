@@ -2,6 +2,7 @@ require 'json'
 class ReportsController < ApplicationController
   before_action :set_report, only: [:show, :edit, :update, :destroy]
 
+
   respond_to :html
 
   def index
@@ -30,8 +31,10 @@ class ReportsController < ApplicationController
     logger.debug @json
     logger.debug 'dildo hat'
     @array = JSON.parse(@json)
+
     @array.each do |e|
-      Report.create(:device => params[:device_id], :restaurant_id => params[:restaurant_id], :user_id =>params[:user_id], :date => e[:date], :value => e[:value])
+      logger.debug e.to_s
+      Report.create(:device => params[:device_id], :restaurant_id => params[:restaurant_id], :user_id =>params[:user_id], :date => e["date"], :value => e["value"])
     end
     # @report.device = params[:device]
     # @report.date = @newhash[:date]
@@ -40,7 +43,7 @@ class ReportsController < ApplicationController
     # @report.restaurant_id = params[:restaurant_id]
     # @report.save
     flash[:notice] = "Entry added successfully"
-    render 'home/index.html.erb'
+    render 'home/index'
   end
 
   def update
@@ -50,7 +53,7 @@ class ReportsController < ApplicationController
 
   def destroy
     @report.destroy
-    respond_with(@report)
+    redirect_to :back
   end
 
   private

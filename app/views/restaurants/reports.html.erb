@@ -1,0 +1,31 @@
+<%= render layout: "pills" do %>
+
+<div class="col-md-9">
+
+  
+
+  <table id="raw-activities-table" class="table table-responsive table-condensed table-hover">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Device Id</th>
+        <th>Value</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+   	<% @reports.each do  |report| %>
+      <tr data-id="ag5zfmNoZWZ0YWItZGVtb3ImCxIEVXNlchiAgICA0d2TCgwLEghBY3Rpdml0eRiAgICAgOTRCww">
+        <td><%= report.date %></td>
+        <td><%= report.device %></td>
+        <td><%= report.value %></td>
+        <td class="text-right"><button href= <%= "/reports/#{report.id}"  %> data-confirm="Are you sure?" method="delete" class="btn btn-danger btn-xs delete-activity-btn">X</button></td>
+      </tr>
+      <% end %>
+      
+    </tbody>
+  </table>
+
+
+    </div>
+<% end %>

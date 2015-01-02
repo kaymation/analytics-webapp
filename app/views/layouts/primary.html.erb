@@ -73,6 +73,9 @@
       </div>
     </div>
     <div class="container">
+         <% if notice %>
+         <div class="notice"><%= content_tag :div, notice, class: "alert alert-success" %></div>
+        <% end %>
          <%= bootstrap_flash %>
       <!-- <p class="notice"><%= notice %></p> -->
           <!-- <p class="alert"><%= alert %></p> -->

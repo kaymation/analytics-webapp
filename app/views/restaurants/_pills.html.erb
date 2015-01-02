@@ -6,27 +6,51 @@
       <!-- Nav tabs -->
       <ul class="nav nav-pills">
 
-        
-  <li class="active"><%= link_to "Overview", :action => :show %></li>
+  <% if @activepage.match(/show/) %>  
+    <li class="active">
+  <% else %>
+  <li>
+  <% end %>
+    <%= link_to "Overview", :action => :show %></li>
+    
+  <% if @activepage.match(/connect/) %>  
+    <li class="active">
+  <% else %>
+  <li>
+  <% end %>
+  <%= link_to "Connect", :action => :connect %></li>
 
-        
-  <li><%= link_to "Connect", :action => :connect %></li>
+  <% if @activepage.match(/devices/) %>  
+    <li class="active">
+  <% else %>
+  <li>
+  <% end %>    
+  <%= link_to "Devices", 'action' =>  :devices %></li>
 
-        
-  <li><%= link_to "Devices", :action =>  :devices %></li>
+  <% if @activepage.match(/upload/) %>  
+    <li class="active">
+  <% else %>
+  <li>
+  <% end %>
+  <%= link_to "Upload", :action => :upload %></li>
 
-        
-  <li><%= link_to "Upload", :action => :new %></li>
+  <% if @activepage.match(/edit/) %>  
+    <li class="active">
+  <% else %>
+  <li>
+  <% end %>
+  <%= link_to "Setting", :action => :edit %></li>
 
-        
-  <li><%= link_to "Setting", :action => :edit %></li>
-
-        
-  <li><%= link_to "Reports", :controller => :reports, :action => :show %></li>
+  <% if @activepage.match(/reports/) %>  
+    <li class="active">
+  <% else %>
+  <li>
+  <% end %>
+  <%= link_to "Reports", :action => :reports %></li>
 
       </ul>
-
+ <%= yield %>
 
     </div>
 
-    <% end %>
+ <% end %>
