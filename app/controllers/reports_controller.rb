@@ -43,7 +43,7 @@ class ReportsController < ApplicationController
     # @report.restaurant_id = params[:restaurant_id]
     # @report.save
     flash[:notice] = "Entry added successfully"
-    render 'home/index'
+    render :success
   end
 
   def update

@@ -6,8 +6,10 @@ class RestaurantsController < ApplicationController
   respond_to :html
 
 def pull_listing
-  @activepage = request.env['PATH_INFO']
-  @listing = Restaurant.where( user_id: current_user.id).order('created_at DESC')
+  if user_signed_in?
+    @activepage = request.env['PATH_INFO']
+    @listing = Restaurant.where( user_id: current_user.id).order('created_at DESC')
+  end
 end
 
   def get_reports
