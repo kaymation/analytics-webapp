@@ -12,6 +12,8 @@ end
 
   def get_reports
      @reports = Report.where(restaurant_id: @restaurant.id)
+     # @dates = Report.select('report.date').where(restaurant_id: @restaurant.id)
+     @dates = @reports.map { |e| [e.date, e.value]  }
   end
 
   def index
@@ -28,12 +30,49 @@ end
 
   def show
     # @listing = Restaurant.where( user_id: current_user.id).order('created_at DESC')
-    @dates = (@reports.map{ |e| Date.parse(e.date) })
-    @values = (@reports.map{ |e| e.value})
-    @chart = LazyHighCharts::HighChart.new('graph') do |c|
-      c.title(:text => "Demo Overview Chart")
-      c.series(:type => 'line', :name => 'Temperature')
-      c.xAxis[type: 'date', ]
+    # @tempdates = @reports.select('report.date').references(:reports)
+    # @dates = []
+    # @tempdates.each do |td|
+    #   @dates << td.date
+    # end
+    # @values = []
+    # @dates.each do |d|
+    #   @temp = @reports.bsearch{|e| (e.date == d)}
+    #   @values << @temp.value
+    # end
+
+    # @utc_date = []
+    # @dates.each do |date|
+    #   @utc_date << date.to_s
+    # end
+
+
+    # @values = (@reports.map{ |e| e.value})
+    # @chart = LazyHighCharts::HighChart.new('graph') do |c|
+    #   c.title(:text => "Demo Overview Chart")
+    #   c.series(:type => 'line', :name => 'Temperature', :data => @values, )
+    #   c.xAxis[type: 'date', ]
+    # end
+    @chart = LazyHighCharts::HighChart.new('graph') do |f|
+      f.title(:text => "Demo Chart")
+      logger.debug @dates
+      logger.debug "utc_date"
+      # logger.debug @values
+      logger.debug "values"
+      # f.xAxis(categories: @utc_date)
+      # f.series(:name => "Value",  :data => @values)
+       f.series(:name=> "Value:", :data => @dates)
+
+      f.yAxis [
+        {:title => {:text => "Value", :margin => 70} },
+      ]
+
+      f.xAxis [
+        {:title => {:text => "Date", :margin => 70} },
+      ]
+
+      f.legend(:align => 'right', :verticalAlign => 'top', :y => 75, :x => -50, :layout => 'vertical',)
+      f.chart({:defaultSeriesType=>"spline"})
     end
 
     logger.debug "dildo hat: #{@pairs}"
