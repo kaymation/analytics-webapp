@@ -24,9 +24,7 @@ class ReportsController < ApplicationController
 
   def create
     @report = Report.new
-    # @report.device = params["device_id"]
-    # @report.restaurant_id = params["restaurant_id"]
-    # @report.user_id = params["user_id"]
+
     @json = params["json"].gsub("\n", "").gsub("\r","").gsub(/  /, "")
     logger.debug @json
     logger.debug 'dildo hat'
@@ -36,12 +34,6 @@ class ReportsController < ApplicationController
       logger.debug e.to_s
       Report.create(:device => params[:device_id], :restaurant_id => params[:restaurant_id], :user_id =>params[:user_id], :date => e["date"], :value => e["value"])
     end
-    # @report.device = params[:device]
-    # @report.date = @newhash[:date]
-    # @report.user_id = params[:user_id]
-    # @report.value = @hewhash[:value]
-    # @report.restaurant_id = params[:restaurant_id]
-    # @report.save
     flash[:notice] = "Entry added successfully"
     render :success
   end

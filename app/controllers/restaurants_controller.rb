@@ -14,16 +14,13 @@ end
 
   def get_reports
      @reports = Report.where(restaurant_id: @restaurant.id)
-     # @dates = Report.select('report.date').where(restaurant_id: @restaurant.id)
      @dates = @reports.map { |e| [e.date, e.value]  }
   end
 
   def index
     @signedin = 0
     @restaurants = Restaurant.all
-    # respond_with(@restaurants)
      if user_signed_in?
-      # @listing = Restaurant.where( user_id: current_user.id).order('created_at DESC')
       render :index and return
     else
        render  "home/index.html.erb"
@@ -31,30 +28,7 @@ end
   end
 
   def show
-    # @listing = Restaurant.where( user_id: current_user.id).order('created_at DESC')
-    # @tempdates = @reports.select('report.date').references(:reports)
-    # @dates = []
-    # @tempdates.each do |td|
-    #   @dates << td.date
-    # end
-    # @values = []
-    # @dates.each do |d|
-    #   @temp = @reports.bsearch{|e| (e.date == d)}
-    #   @values << @temp.value
-    # end
-
-    # @utc_date = []
-    # @dates.each do |date|
-    #   @utc_date << date.to_s
-    # end
-
-
-    # @values = (@reports.map{ |e| e.value})
-    # @chart = LazyHighCharts::HighChart.new('graph') do |c|
-    #   c.title(:text => "Demo Overview Chart")
-    #   c.series(:type => 'line', :name => 'Temperature', :data => @values, )
-    #   c.xAxis[type: 'date', ]
-    # end
+ 
     @chart = LazyHighCharts::HighChart.new('graph') do |f|
       f.title(:text => "Demo Chart")
       logger.debug @dates
