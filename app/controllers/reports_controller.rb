@@ -26,8 +26,6 @@ class ReportsController < ApplicationController
     @report = Report.new
 
     @json = params["json"].gsub("\n", "").gsub("\r","").gsub(/  /, "")
-    logger.debug @json
-    logger.debug 'dildo hat'
     @array = JSON.parse(@json)
 
     @array.each do |e|

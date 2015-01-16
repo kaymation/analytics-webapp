@@ -31,12 +31,7 @@ end
  
     @chart = LazyHighCharts::HighChart.new('graph') do |f|
       f.title(:text => "Demo Chart")
-      logger.debug @dates
-      logger.debug "utc_date"
-      # logger.debug @values
-      logger.debug "values"
-      # f.xAxis(categories: @utc_date)
-      # f.series(:name => "Value",  :data => @values)
+ 
        f.series(:name=> "Value:", :data => @dates)
 
       f.yAxis [
@@ -51,7 +46,6 @@ end
       f.chart({:defaultSeriesType=>"spline"})
     end
 
-    logger.debug "dildo hat: #{@pairs}"
     respond_with(@restaurant)
   end
 
