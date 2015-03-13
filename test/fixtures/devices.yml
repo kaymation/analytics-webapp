@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  station_name: MyString
+  error_logs: MyString
+  configuration_profile_id: 1
+  license: MyString
+  store_id: 1
+
+two:
+  station_name: MyString
+  error_logs: MyString
+  configuration_profile_id: 1
+  license: MyString
+  store_id: 1

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  device_id: 1
+  preptime: 1
+  item: 1
+  modifier: MyString
+  order_number: 1
+
+two:
+  device_id: 1
+  preptime: 1
+  item: 1
+  modifier: MyString
+  order_number: 1

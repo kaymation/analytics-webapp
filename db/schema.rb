@@ -11,19 +11,72 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141231183133) do
+ActiveRecord::Schema.define(version: 20150304033806) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "activity_logs", force: true do |t|
+    t.integer  "device_id"
+    t.integer  "preptime"
+    t.integer  "item"
+    t.string   "modifier"
+    t.integer  "order_number"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "devices", force: true do |t|
+    t.string   "station_name"
+    t.string   "error_logs"
+    t.integer  "configuration_profile_id"
+    t.string   "license"
+    t.integer  "restaurant_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "api_key"
+  end
+
+  create_table "food_menus", force: true do |t|
+    t.integer  "restaurant_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "graphs", force: true do |t|
+    t.string   "tags"
+    t.string   "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "restaurant_id"
+    t.integer  "user_id"
+  end
+
+  create_table "items", force: true do |t|
+    t.string   "name"
+    t.integer  "price"
+    t.string   "modifiers",   default: [], array: true
+    t.integer  "foodmenu_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "menu_items", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "reports", force: true do |t|
-    t.integer  "device"
-    t.date     "date"
-    t.integer  "value"
+    t.integer  "device_id"
     t.integer  "restaurant_id"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "preptime"
+    t.integer  "modifier"
+    t.datetime "when"
+    t.string   "item"
+    t.integer  "order_number"
   end
 
   create_table "restaurants", force: true do |t|

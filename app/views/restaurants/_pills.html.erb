@@ -12,6 +12,13 @@
   <li>
   <% end %>
     <%= link_to "Overview", :action => :show %></li>
+
+   <% if @activepage.match(/analyze/) %>  
+    <li class="active">
+  <% else %>
+  <li>
+  <% end %>
+    <%= link_to "Generate Reports", :action => :analyze %></li>
     
   <% if @activepage.match(/connect/) %>  
     <li class="active">
@@ -19,6 +26,13 @@
   <li>
   <% end %>
   <%= link_to "Connect", :action => :connect %></li>
+
+  <% if @activepage.match(/menu/) %>  
+    <li class="active">
+  <% else %>
+  <li>
+  <% end %>
+    <%= link_to "Manage Menu", :action => :menu %></li>
 
   <% if @activepage.match(/devices/) %>  
     <li class="active">

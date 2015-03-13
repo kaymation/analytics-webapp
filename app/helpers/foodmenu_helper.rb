@@ -1,0 +1,2 @@
+module FoodmenuHelper
+end

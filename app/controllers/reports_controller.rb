@@ -19,6 +19,16 @@ class ReportsController < ApplicationController
     respond_with(@report)
   end
 
+  def authenticate
+    @api_key = params['key']
+    @device = Device.where(api_key: api_key).first if @api_key
+
+    unless @device
+      head status: :unauthorized
+      return false
+    end
+  end
+
   def edit
   end
 
@@ -30,7 +40,7 @@ class ReportsController < ApplicationController
 
     @array.each do |e|
       logger.debug e.to_s
-      Report.create(:device => params[:device_id], :restaurant_id => params[:restaurant_id], :user_id =>params[:user_id], :date => e["date"], :value => e["value"])
+      Report.create(:device => params[:device_id], :restaurant_id => params[:restaurant_id], :user_id =>params[:user_id], :when => DateTime.parse(e["when"]), :preptime => e["preptime"], :item => e["item"], :order_number => e["order_number"])
     end
     flash[:notice] = "Entry added successfully"
     render :success

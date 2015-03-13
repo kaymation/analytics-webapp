@@ -1,4 +1,4 @@
-source 'http://rubygems.org'
+source 'https://rubygems.org'
 
 ruby '1.9.3'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -9,9 +9,11 @@ gem 'rails', '4.0.4'
 # gem 'sqlite3'
 gem 'pg'
 
-gem 'lazy_high_charts'
+gem "d3-rails"
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.2'
+
+gem 'seed-fu', '~> 2.3'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -27,6 +29,8 @@ gem 'jquery-rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
+
+gem 'jquery-turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'

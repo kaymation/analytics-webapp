@@ -4,6 +4,9 @@ Cheftab::Application.routes.draw do
 
   resources :restaurants
 
+  resources :items
+  resources :graphs, defaults: {format: 'json'}
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -23,9 +26,15 @@ Cheftab::Application.routes.draw do
 
   get '/restaurants/:id/show', to: 'restaurants#show'
 
+  get '/restaurants/:id/analyze', to: 'restaurants#analyze'
+
+  get '/restaurants/:id/menu', to: 'restaurants#menu'
+
   get '/apitest' => 'reports#new'
 
   post '/reports/:user_id/:restaurant_id', to: 'reports#create'
+
+  post '/restaurants/:id/new_item', to: 'restaurants#new_item'
 
   get '/contact', to: 'inquiry#index'
 

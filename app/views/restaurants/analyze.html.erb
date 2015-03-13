@@ -1,0 +1,24 @@
+<%= render layout: "pills" do %>
+        
+      <div class="row-fluid">
+
+        <div class="span4">
+          <h3> Analyze your Data with a graph</h3>
+          <%= form_tag "/graphs", method: "post", id: "graph_form", remote: true do %>
+              <p>Select station to report on:</p>
+              <%= select_tag(:station, options_for_select(@devices.map {|dev| [dev.station_name, dev.station_name]})) %> 
+              <p>Select graph type:</p>
+              <%= select_tag(:graphType, options_for_select({"Prep Time Analysis" => "Prep Time Analysis", "Order Load Analysis" => "Order Load Analysis"})) %>
+              <%= hidden_field_tag(:restaurant_id, @restaurant.id) %>
+              <%= hidden_field_tag(:user_id, @restaurant.user_id) %>
+
+              <%= submit_tag "Submit" %>                
+          <% end %>
+        </div>
+
+        <div class= "span8" id= "graphspace" >
+            <%= render partial: 'graphs' %>
+        </div>
+
+      </div>
+<% end %>
