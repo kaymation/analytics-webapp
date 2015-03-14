@@ -95,6 +95,7 @@ function draw(data){
       return y(d.Value);
   });
 
+  var clear = $("#graphhere").html("");
   var svg = d3.select("#graphhere").append("svg")
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
