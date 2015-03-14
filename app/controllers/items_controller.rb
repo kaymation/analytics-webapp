@@ -9,7 +9,7 @@ class ItemsController < ApplicationController
     @items = Item.where(foodmenu_id: @menu.id)
 		respond_to do |format|
 			format.html
-			format.js render {partial: '/restaurants/items'}
+			format.js  { render partial: '/restaurants/items'}
 			format.json
 		end
 	end
