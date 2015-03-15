@@ -1,5 +1,5 @@
 class ContactMailer < ActionMailer::Base
-  default :from => 'kevinmquigley.41@gmail.com'
+  default :from => 'app31777222@heroku.com'
 	def report_mail(name, email, message)
 		@name = name
 		@email = email
