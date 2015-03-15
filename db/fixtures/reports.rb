@@ -1,5 +1,6 @@
 Report.destroy_all
 if User.where(email: 'test_user@example.com').blank?
+	puts "we are here"
 	 u = User.new(email: 'test_user@example.com', password: 'password' )
 	 u.save!
 end
