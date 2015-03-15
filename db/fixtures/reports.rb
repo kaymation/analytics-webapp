@@ -1,6 +1,6 @@
 Report.destroy_all
-if User.where(email: 'test_user@example.com').empty?
-	 u = User.create(email: 'test@example.com', password: 'password' )
+if User.where(email: 'test_user@example.com').blank?
+	 u = User.new(email: 'test_user@example.com', password: 'password' )
 	 u.save!
 end
 100.times do
