@@ -4,6 +4,7 @@ class ContactMailer < ActionMailer::Base
 		@name = name
 		@email = email
 		@message = message
-		mail(:to => 'mike@selectelectronics.com ', :subject => "Inquiry from #{name}<#{email}>")
+		logger.debug("ActionMailer Invoked")
+		mail(:to => 'kevinmquigley.41@gmail.com', :subject => "Inquiry from #{name}<#{email}>")
 	end
 end
