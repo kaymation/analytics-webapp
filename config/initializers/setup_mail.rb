@@ -4,6 +4,6 @@ ActionMailer::Base.smtp_settings = {
 :domain => "mandrillapp.com",
 :user_name => "app31777222@heroku.com",
 :password => "5OunalrBFKaYWKZG1ZFAwg",
-:authentication => "plain",
+:authentication => "login",
 :enable_starttls_auto => true
 }
