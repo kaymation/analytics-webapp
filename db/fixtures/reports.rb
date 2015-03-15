@@ -6,7 +6,7 @@ Report.destroy_all
 		r.when = rand(2.years).seconds.ago
 		r.preptime = rand(1000)
 		r.device_id = 1
-		r.restaurant_id = Restaurant.maximum(:id)
+		r.restaurant_id = Restaurant.maximum(:created_at)
 		r.user_id = 2
 		r.order_number = rand(100)
 	end
