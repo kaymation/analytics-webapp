@@ -1,6 +1,7 @@
 Report.destroy_all
 if User.where(email: 'test@example.com').nil?
-	User.create(email: 'test@example.com', password: 'password' )
+	 u = User.create(email: 'test@example.com', password: 'password' )
+	 u.save!
 end
 100.times do
 	Report.seed do |r|
