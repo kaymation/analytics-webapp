@@ -6,7 +6,7 @@ Report.destroy_all
 		r.preptime = rand(1000)
 		r.device_id = 1
 		r.restaurant_id = Restaurant.all.sort_by(:created_at).first
-		r.user_id = User.where(email: 'test_user@example.com').first.id
+		r.user_id = User.where(email: 'mvpetronaci@gmail.com').first.id
 		r.order_number = rand(100)
 	end
 end
