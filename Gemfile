@@ -9,6 +9,8 @@ gem 'rails', '4.0.4'
 # gem 'sqlite3'
 gem 'pg'
 
+gem 'puma'
+
 gem 'rails_12factor', group: :production
 
 gem "d3-rails"
