@@ -1,0 +1,14 @@
+- model_class = Restaurant
+= render layout: "pills" do
+  .page-header
+    %h1= t '.title', :default => [:'helpers.titles.edit', 'Manage Menu'], :model => model_class.model_name.human.titleize
+  #reftable
+    = render partial: "items"
+  %table.table.table-responsive.table-condensed.table-hover
+    %thead
+      = form_for(@item, remote: true) do |f|
+        %tr
+          %td= f.text_field :name
+          %td= f.text_field :price
+          %td= f.submit "Add"
+    %tbody

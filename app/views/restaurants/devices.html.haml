@@ -1,0 +1,11 @@
+= render layout: "pills" do
+  .alert.alert-info
+    %p This table shows a list of all Devices which have communicated with this restaurant. Devices are added to this list automatically when they access the API.
+  %table#raw-activities-table.table.table-bordered.table-hover
+    %thead
+      %tr
+        %th Device Id
+    %tbody
+      - @ids.uniq.each do |d|
+        %tr{"data-id" => "ag5zfmNoZWZ0YWItZGVtb3ITCxIGRGV2aWNlGICAgICM1oAKDA"}
+          %td= d

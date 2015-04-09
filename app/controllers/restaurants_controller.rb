@@ -21,11 +21,11 @@ end
   def index
     @signedin = 0
     @restaurants = Restaurant.all
-     if user_signed_in?
-      render :index and return
-    else
-       render  "home/index.html.erb"
-     end
+      if user_signed_in?
+        render :index and return
+      else
+        redirect_to "/", :alert => "Please login first."
+      end
   end
 
   def get_menu

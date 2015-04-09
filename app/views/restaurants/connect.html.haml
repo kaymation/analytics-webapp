@@ -1,0 +1,21 @@
+/ <h1>FUCKFUCKFUCK</h1>
+= render layout: "pills" do
+  .container
+    .alert.alert-success
+      %p
+        To enable analytics on your
+        = succeed "," do
+          %strong ChefTab device
+      %br/
+      %ol
+        %li Turn on your ChefTab device.
+        %li Go to Settings, then select Tracking.
+        %li Fill in your UserID and TrackingID exactly as shown below.
+    = label_tag :uid, "User ID"
+    = text_field_tag :uid, current_user.id, :readonly => true
+    = label_tag :tracking, "TrackingID"
+    = text_field_tag :tracking, @restaurant.id, :readonly => true
+    %p
+      For more information on using the API,
+      = succeed "." do
+        %a{:href => "/apitest"} see the API docs

@@ -12,9 +12,13 @@ Cheftab::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
 
-  root 'restaurants#index'
+  root to: 'pages#home'
 
-  get '/home' => 'restaurants#index'
+  get 'pages/home'
+  get 'static_pages/help'
+
+  get '/home', to: 'pages#home', as: :home
+  get '/help', to: 'pages#help', as: :help
 
   get '/restaurants/:id/connect', to: 'restaurants#connect'
 

@@ -1,0 +1,17 @@
+= render layout: "pills" do
+  .col-md-9
+    %table#raw-activities-table.table.table-responsive.table-condensed.table-hover
+      %thead
+        %tr
+          %th Timestamp
+          %th Device Id
+          %th Prep-time
+          %th
+      %tbody
+        - @reports.each do  |report|
+          %tr{"data-id" => "ag5zfmNoZWZ0YWItZGVtb3ImCxIEVXNlchiAgICA0d2TCgwLEghBY3Rpdml0eRiAgICAgOTRCww"}
+            %td= report.when
+            %td= report.device_id
+            %td= report.preptime
+            %td.text-right
+              %button= link_to "X","/reports/1/{report.id}", :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => "btn btn-danger btn-xs delete-activity-btn"
