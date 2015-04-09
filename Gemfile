@@ -11,6 +11,8 @@ gem 'pg'
 
 gem 'puma'
 
+gem 'haml'
+
 gem 'rails_12factor', group: :production
 
 gem "d3-rails"

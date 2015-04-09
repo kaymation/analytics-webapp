@@ -3,8 +3,7 @@
   .container
     .row
       .span3
-        .page-header
-          %h3 My Restaurants
+        .h3 My Restaurants
         / Nav tabs
         %ul.nav.nav-pills.nav-stacked
           %li
@@ -13,7 +12,7 @@
             %a{:href => "/restaurants/add"}
               %span.glyphicon.glyphicon-plus
               Add Restaurant
-        %br/
-      %hr.hidden-lg.hidden-md/
+      /  %br/
+      /%hr.hidden-lg.hidden-md/
       .span9
         = yield

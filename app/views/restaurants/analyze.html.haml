@@ -1,3 +1,4 @@
+- model_class = Restaurant
 = render layout: "pills" do
   .row-fluid
     .span4
@@ -9,6 +10,6 @@
         = select_tag(:graphType, options_for_select({"Prep Time Analysis" => "Prep Time Analysis", "Order Load Analysis" => "Order Load Analysis"}))
         = hidden_field_tag(:restaurant_id, @restaurant.id)
         = hidden_field_tag(:user_id, @restaurant.user_id)
-        = submit_tag "Submit"
+        = submit_tag "Submit", :class => 'btn btn-primary'
     #graphspace.span8
       = render partial: 'graphs'

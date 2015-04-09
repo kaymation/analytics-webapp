@@ -14,4 +14,4 @@
             %td= report.device_id
             %td= report.preptime
             %td.text-right
-              %button= link_to "X","/reports/1/{report.id}", :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => "btn btn-danger btn-xs delete-activity-btn"
+              %link= link_to "X", {controller: "reports", action: 'destroy', id: report.id}, :class => "btn btn-danger", confirm: "Are you sure?", method: :delete
