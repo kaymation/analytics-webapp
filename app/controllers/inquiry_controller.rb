@@ -5,6 +5,6 @@ class InquiryController < ApplicationController
 	def send_mail
 		ContactMailer.report_mail(params['name'], params['email'], params['message']).deliver
     	flash[:notice] = "Message sent successfully"
-    	render 'home/index.html.erb'
+      redirect_to :home
 	end
 end

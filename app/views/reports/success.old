@@ -1,2 +1,0 @@
-<%= debug(params) %>
-<%= link_to "<- Back", :back %>
