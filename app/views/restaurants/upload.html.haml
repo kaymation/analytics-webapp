@@ -2,7 +2,9 @@
   %form#test-add-form{action: "/reports", enctype: "multipart/form-data", method: "POST"}
     .form-group
       %label{:for => "input-name"} URL
-      %input.form-control{name: "url", readonly: "readonly", type: "text", value: "http://localhost:8080/reports/<user id>/<restaurant id>"}
+      %input.form-control{name: "url", readonly: "readonly", type: "text", value: "http://localhost:3000/reports/<user id>/<restaurant id>"}
+      %input{name: "user_id", type: "hidden", value: current_user.id}
+      %input{name: "restaurant_id", type: "hidden", value: @restaurant.id}
     .form-group
       %label Device id:
       %input.form-control{name: "device_id", type: "text", value: ""}
@@ -14,8 +16,5 @@
             {"when": "2015-01-08 01:42:46 UTC", "preptime": 5490},
             {"when": "2015-01-09 01:42:46 UTC", "preptime": 2344},
             {"when": "2015-01-08 01:42:46 UTC", "preptime": 2779}
-          ]    .form-group
-      %input{name: "user_id", type: "hidden", value: current_user.id}
-    .form-group
-      %input{name: "restaurant_id", type: "hidden", value: @restaurant.id}
+          ]
     %button.btn.btn-success.btn-lg{type: "submit"} Submit the Request

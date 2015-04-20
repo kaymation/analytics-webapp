@@ -5,7 +5,9 @@
     %thead
       %tr
         %th Device Id
+        %th Name
     %tbody
       - @ids.uniq.each do |d|
-        %tr{"data-id" => "ag5zfmNoZWZ0YWItZGVtb3ITCxIGRGV2aWNlGICAgICM1oAKDA"}
+        %tr
           %td= d
+          %td

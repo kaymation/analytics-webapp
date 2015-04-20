@@ -1,17 +1,23 @@
 = render layout: "pills" do
+  .col-md-9= will_paginate @reports
   .col-md-9
     %table#raw-activities-table.table.table-responsive.table-condensed.table-hover
       %thead
         %tr
           %th Timestamp
+          %th Order#
           %th Device Id
+          %th Restaurant Id
+          %th Item
           %th Prep-time
-          %th
       %tbody
         - @reports.each do  |report|
-          %tr{"data-id" => "ag5zfmNoZWZ0YWItZGVtb3ImCxIEVXNlchiAgICA0d2TCgwLEghBY3Rpdml0eRiAgICAgOTRCww"}
+          %tr
             %td= report.when
+            %td= report.order_number
             %td= report.device_id
+            %td= report.restaurant_id
+            %td= report.item
             %td= report.preptime
             %td.text-right
               %link= link_to "X", {controller: "reports", action: 'destroy', id: report.id}, :class => "btn btn-danger", confirm: "Are you sure?", method: :delete

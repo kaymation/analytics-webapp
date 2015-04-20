@@ -5,7 +5,7 @@
       %h3 Analyze your Data with a graph
       = form_tag "/graphs", method: "post", id: "graph_form", remote: true do
         %p Select station to report on:
-        = select_tag(:station, options_for_select(@devices.map {|dev| [dev.station_name, dev.station_name]}))
+        = select_tag(:device_id, options_for_select(@devices.map {|dev| [dev.station_name, dev.station_name]}))
         %p Select graph type:
         = select_tag(:graphType, options_for_select({"Prep Time Analysis" => "Prep Time Analysis", "Order Load Analysis" => "Order Load Analysis"}))
         = hidden_field_tag(:restaurant_id, @restaurant.id)

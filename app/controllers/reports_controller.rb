@@ -1,13 +1,13 @@
 require 'json'
 class ReportsController < ApplicationController
   before_action :set_report, only: [:show, :edit, :update, :destroy]
+  #skip_before_filter  :verify_authenticity_token
 
 
   respond_to :html
 
   def index
-    @reports = Report.all
-    respond_with(@reports)
+    redirect_to :home
   end
 
   def show
@@ -33,17 +33,14 @@ class ReportsController < ApplicationController
   end
 
   def create
-    @report = Report.new
-
     @json = params["json"].gsub("\n", "").gsub("\r","").gsub(/  /, "")
     @array = JSON.parse(@json)
-
     @array.each do |e|
-      logger.debug e.to_s
-      Report.create(:device => params[:device_id], :restaurant_id => params[:restaurant_id], :user_id =>params[:user_id], :when => DateTime.parse(e["when"]), :preptime => e["preptime"], :item => e["item"], :order_number => e["order_number"])
+      logger.debug e
+      @report = Report.create(:device_id => params[:device_id], :restaurant_id => params[:restaurant_id], :user_id =>params[:user_id], :when => DateTime.parse(e["when"]), :preptime => e["preptime"], :item => e["item"], :order_number => e["order_number"])
     end
     flash[:notice] = "Entry added successfully"
-    render :success
+    respond_with(@report)
   end
 
   def update
@@ -60,8 +57,6 @@ class ReportsController < ApplicationController
     def set_report
       @report = Report.find(params[:id])
     end
-
-
 
     def report_params
       params.require(:report).permit(:device, :date, :value, :restaurant_id, :user_id)

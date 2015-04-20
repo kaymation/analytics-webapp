@@ -6,12 +6,12 @@ class RestaurantsController < ApplicationController
 
   respond_to :html
 
-def pull_listing
-  if user_signed_in?
-    @activepage = request.env['PATH_INFO']
-    @listing = Restaurant.where( user_id: current_user.id).order('created_at DESC')
+  def pull_listing
+    if user_signed_in?
+      @activepage = request.env['PATH_INFO']
+      @listing = Restaurant.where( user_id: current_user.id).order('created_at DESC')
+    end
   end
-end
 
   def get_reports
      @reports = Report.where(restaurant_id: @restaurant.id)
@@ -94,12 +94,17 @@ end
   def analyze
     @reports = Report.where(restaurant_id: @restaurant.id)
     @reports.each do |r|
-      logger.debug r.device_id
-    end
-    @devices = @reports.map { |r| Device.find(r.device_id) }.uniq
-    @devices.each do |r|
-      logger.debug r.station_name
-      
+      #logger.debug r.device_id
+      if @devices.empty?
+        return
+      end
+      @devices = @reports.map { |r| Device.find(r.device_id) }.uniq
+      if @devices.empty?
+        return
+      end
+      @devices.each do |r|
+        #logger.debug r.station_name
+      end
     end
     @graph = Graph.new
   end
@@ -120,7 +125,7 @@ end
   end
 
   def reports
-    @reports = Report.where(restaurant_id: @restaurant.id)
+    @reports = Report.where(restaurant_id: @restaurant.id).paginate(:page => params[:page], :per_page => 10)
   end
 
   def connect
