@@ -5,10 +5,14 @@ class Device < ActiveRecord::Base
 	end
 	
 	def generate_api_key
-  		loop do
-	    	token = SecureRandom.base64.tr('+/=', 'Qrt')
-	    	break token unless Device.exists?(api_key: token)
+  	token = SecureRandom.base64.tr('+/=', 'Qrt')
+      loop do
+	    	if Device.exists?(api_key: token) == false
+          break
+        end
+        token = SecureRandom.base64.tr('+/=', 'Qrt')
   		end
+      return token
 	end
 
 end

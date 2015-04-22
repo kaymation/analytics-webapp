@@ -62,24 +62,6 @@ class RestaurantsController < ApplicationController
   end
 
   def show
- 
-    # @chart = LazyHighCharts::HighChart.new('graph') do |f|
-    #   f.title(:text => "Demo Chart")
- 
-    #    f.series(:name=> "Value:", :data => @dates)
-
-    #   f.yAxis [
-    #     {:title => {:text => "Value", :margin => 70} },
-    #   ]
-
-    #   f.xAxis [
-    #     {:title => {:text => "Date", :margin => 70} },
-    #   ]
-
-    #   f.legend(:align => 'right', :verticalAlign => 'top', :y => 75, :x => -50, :layout => 'vertical',)
-    #   f.chart({:defaultSeriesType=>"spline"})
-    # end
-
     respond_with(@restaurant)
   end
 
@@ -93,20 +75,20 @@ class RestaurantsController < ApplicationController
 
   def analyze
     @reports = Report.where(restaurant_id: @restaurant.id)
-    @reports.each do |r|
+    @ids = @reports.map{|e| e.device_id}.uniq
+    #@reports = Report.where(restaurant_id: @restaurant.id)
+    #@reports.each do |r|
       #logger.debug r.device_id
-      if @devices.empty?
-        return
-      end
-      @devices = @reports.map { |r| Device.find(r.device_id) }.uniq
-      if @devices.empty?
-        return
-      end
-      @devices.each do |r|
+    #end
+    #@devices = @reports.map { |r| Device.find(r.device_id) }.uniq
+    #  if @devices.empty?
+    #    return
+    # end
+    #  @devices.each do |r|
         #logger.debug r.station_name
-      end
-    end
-    @graph = Graph.new
+    #  end
+    #end
+    #@graph = Graph.new
   end
 
   def create
@@ -131,8 +113,6 @@ class RestaurantsController < ApplicationController
   def connect
     respond_with(@restaurant)
   end
-
-
 
   def update
     @restaurant.update(restaurant_params)

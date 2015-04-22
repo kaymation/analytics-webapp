@@ -1,7 +1,7 @@
 require 'json'
 class ReportsController < ApplicationController
   before_action :set_report, only: [:show, :edit, :update, :destroy]
-  #skip_before_filter  :verify_authenticity_token
+  skip_before_filter  :verify_authenticity_token
 
 
   respond_to :html
@@ -36,7 +36,15 @@ class ReportsController < ApplicationController
     @json = params["json"].gsub("\n", "").gsub("\r","").gsub(/  /, "")
     @array = JSON.parse(@json)
     @array.each do |e|
-      logger.debug e
+      #logger.debug e
+      if Device.exists?(:id => params[:device_id])
+        @device = Device.find(params[:device_id])
+        @api_key = @device.api_key
+      else
+        @device = Device.create(:id => params[:device_id])
+        @api_key = @device.api_key
+      end
+
       @report = Report.create(:device_id => params[:device_id], :restaurant_id => params[:restaurant_id], :user_id =>params[:user_id], :when => DateTime.parse(e["when"]), :preptime => e["preptime"], :item => e["item"], :order_number => e["order_number"])
     end
     flash[:notice] = "Entry added successfully"

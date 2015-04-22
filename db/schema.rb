@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20150417052644) do
   create_table "devices", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "api_key"
   end
 
   create_table "food_menus", force: true do |t|
