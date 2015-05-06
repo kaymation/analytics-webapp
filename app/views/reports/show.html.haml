@@ -27,6 +27,7 @@
       = model_class.human_attribute_name(:user_id)
       \:
   %dd= @report.user_id
+  %p= debug(@json)
 .form-actions
   = link_to t('.back', :default => t("helpers.links.back")), |
     reports_path, :class => 'btn'                            |

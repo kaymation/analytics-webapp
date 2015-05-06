@@ -11,8 +11,8 @@
         = link_to "Manage Menu", :action => :menu
       %li{:class => ('active' if @activepage.match(/devices/))}
         = link_to "Devices", 'action' =>  :devices
-      %li{:class => ('active' if @activepage.match(/upload/))}
-        = link_to "Upload", :action => :upload
+      /%li{:class => ('active' if @activepage.match(/upload/))}
+      /  = link_to "Upload", :action => :upload
       %li{:class => ('active' if @activepage.match(/edit/))}
         = link_to "Setting", :action => :edit
       %li{:class => ('active' if @activepage.match(/reports/))}

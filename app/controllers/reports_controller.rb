@@ -4,14 +4,17 @@ class ReportsController < ApplicationController
   skip_before_filter  :verify_authenticity_token
 
 
-  respond_to :html
+  #respond_to :html
 
   def index
     redirect_to :home
   end
 
   def show
-    respond_with(@report)
+    respond_to do |format|
+      format.html { render html: @report }
+      format.json { render json: @report }
+    end
   end
 
   def new
@@ -33,8 +36,9 @@ class ReportsController < ApplicationController
   end
 
   def create
-    @json = params["json"].gsub("\n", "").gsub("\r","").gsub(/  /, "")
-    @array = JSON.parse(@json)
+    #@json = params["json"].gsub("\n", "").gsub("\r","").gsub(/  /, "")
+    #@array = JSON.parse(@json)
+    @array = params["reports"]
     @array.each do |e|
       #logger.debug e
       if Device.exists?(:id => params[:device_id])
@@ -47,8 +51,11 @@ class ReportsController < ApplicationController
 
       @report = Report.create(:device_id => params[:device_id], :restaurant_id => params[:restaurant_id], :user_id =>params[:user_id], :when => DateTime.parse(e["when"]), :preptime => e["preptime"], :item => e["item"], :order_number => e["order_number"])
     end
-    flash[:notice] = "Entry added successfully"
-    respond_with(@report)
+    #flash[:notice] = "Entry added successfully"
+    respond_to do |format|
+      format.html { render html: @report }
+      format.json { render json: @report }
+    end
   end
 
   def update
