@@ -4,7 +4,8 @@ class ReportsController < ApplicationController
   skip_before_filter  :verify_authenticity_token
 
 
-  #respond_to :html
+  respond_to :html
+  respond_to :json
 
   def index
     redirect_to :home
