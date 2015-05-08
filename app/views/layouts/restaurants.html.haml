@@ -1,0 +1,18 @@
+= render template: "layouts/primary"
+#wrap
+  .container
+    .row
+      .span3
+        .h3 My Restaurants
+        / Nav tabs
+        %ul.nav.nav-pills.nav-stacked
+          %li
+            %a{:href => "/restaurants/5629499534213120"} Kevin's Southern Fried Chicken
+          %li
+            %a{:href => "/restaurants/add"}
+              %span.glyphicon.glyphicon-plus
+              Add Restaurant
+      /  %br/
+      /%hr.hidden-lg.hidden-md/
+      .span9
+        = yield

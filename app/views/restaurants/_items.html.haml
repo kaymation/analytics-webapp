@@ -1,0 +1,11 @@
+%table#items-table.table.table-responsive.table-condensed.table-hover
+  %thead
+    %tr
+      %th Item Name
+      %th Price
+      %th
+  %tbody
+    - @items.each do |item|
+      %tr
+        %td= item.name
+        %td= item.price

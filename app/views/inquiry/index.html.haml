@@ -1,0 +1,10 @@
+.row-fluid
+  %h1 Contact Us
+  = form_tag "/inquiry/send_mail", method: "get" do
+    = label_tag 'name', "Name:"
+    = text_field_tag 'name'
+    = label_tag 'email', "Email:"
+    = text_field_tag 'email'
+    = label_tag 'message', "Message:"
+    = text_area_tag 'message'
+    = submit_tag "submit"

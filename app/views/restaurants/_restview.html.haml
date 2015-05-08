@@ -1,0 +1,19 @@
+#wrap
+  .container
+    .row
+      .span3
+        .page-header
+          %h3 My Restaurants
+        / Nav tabs
+        %ul.nav.nav-pills.nav-stacked
+          - @listing.each do  |r|
+            %li
+              = link_to r.name, "/restaurants/#{r.id}/show"
+          %li
+            %a{:href => "/restaurants/new"}
+              %span.glyphicon.glyphicon-plus
+              Add Restaurant
+      /  %br/
+      /%hr.hidden-lg.hidden-md/
+      .span9
+        = yield

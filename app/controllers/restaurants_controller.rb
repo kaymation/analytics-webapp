@@ -6,12 +6,12 @@ class RestaurantsController < ApplicationController
 
   respond_to :html
 
-def pull_listing
-  if user_signed_in?
-    @activepage = request.env['PATH_INFO']
-    @listing = Restaurant.where( user_id: current_user.id).order('created_at DESC')
+  def pull_listing
+    if user_signed_in?
+      @activepage = request.env['PATH_INFO']
+      @listing = Restaurant.where( user_id: current_user.id).order('created_at DESC')
+    end
   end
-end
 
   def get_reports
      @reports = Report.where(restaurant_id: @restaurant.id)
@@ -21,11 +21,11 @@ end
   def index
     @signedin = 0
     @restaurants = Restaurant.all
-     if user_signed_in?
-      render :index and return
-    else
-       render  "home/index.html.erb"
-     end
+      if user_signed_in?
+        render :index and return
+      else
+        redirect_to "/", :alert => "Please login first."
+      end
   end
 
   def get_menu
@@ -62,24 +62,6 @@ end
   end
 
   def show
- 
-    # @chart = LazyHighCharts::HighChart.new('graph') do |f|
-    #   f.title(:text => "Demo Chart")
- 
-    #    f.series(:name=> "Value:", :data => @dates)
-
-    #   f.yAxis [
-    #     {:title => {:text => "Value", :margin => 70} },
-    #   ]
-
-    #   f.xAxis [
-    #     {:title => {:text => "Date", :margin => 70} },
-    #   ]
-
-    #   f.legend(:align => 'right', :verticalAlign => 'top', :y => 75, :x => -50, :layout => 'vertical',)
-    #   f.chart({:defaultSeriesType=>"spline"})
-    # end
-
     respond_with(@restaurant)
   end
 
@@ -93,15 +75,20 @@ end
 
   def analyze
     @reports = Report.where(restaurant_id: @restaurant.id)
-    @reports.each do |r|
-      logger.debug r.device_id
-    end
-    @devices = @reports.map { |r| Device.find(r.device_id) }.uniq
-    @devices.each do |r|
-      logger.debug r.station_name
-      
-    end
-    @graph = Graph.new
+    @ids = @reports.map{|e| e.device_id}.uniq
+    #@reports = Report.where(restaurant_id: @restaurant.id)
+    #@reports.each do |r|
+      #logger.debug r.device_id
+    #end
+    #@devices = @reports.map { |r| Device.find(r.device_id) }.uniq
+    #  if @devices.empty?
+    #    return
+    # end
+    #  @devices.each do |r|
+        #logger.debug r.station_name
+    #  end
+    #end
+    #@graph = Graph.new
   end
 
   def create
@@ -120,14 +107,12 @@ end
   end
 
   def reports
-    @reports = Report.where(restaurant_id: @restaurant.id)
+    @reports = Report.where(restaurant_id: @restaurant.id).paginate(:page => params[:page], :per_page => 10)
   end
 
   def connect
     respond_with(@restaurant)
   end
-
-
 
   def update
     @restaurant.update(restaurant_params)

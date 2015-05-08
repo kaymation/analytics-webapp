@@ -1,0 +1,20 @@
+= render layout: "restview" do
+  .span9
+    %ul.nav.nav-pills
+      %li
+        = link_to "Overview", :action => :show
+      %li{:class => ('active' if @activepage.match(/analyze/))}
+        = link_to "Generate Reports", :action => :analyze
+      %li{:class => ('active' if @activepage.match(/connect/))}
+        = link_to "Connect", :action => :connect
+      %li{:class => ('active' if @activepage.match(/menu/))}
+        = link_to "Manage Menu", :action => :menu
+      %li{:class => ('active' if @activepage.match(/devices/))}
+        = link_to "Devices", 'action' =>  :devices
+      /%li{:class => ('active' if @activepage.match(/upload/))}
+      /  = link_to "Upload", :action => :upload
+      %li{:class => ('active' if @activepage.match(/edit/))}
+        = link_to "Setting", :action => :edit
+      %li{:class => ('active' if @activepage.match(/reports/))}
+        = link_to "Reports", :action => :reports
+    = yield

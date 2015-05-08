@@ -1,3 +1,3 @@
 class Item < ActiveRecord::Base
-	belongs_to :food_menus
+	belongs_to :restaurant
 end

@@ -1,0 +1,23 @@
+%form#test-add-form{:action => "/reports", :enctype => "multipart/form-data", :method => "POST"}
+  .form-group
+    %label{:for => "input-name"} URL
+    %input.form-control{:name => "url", :readonly => "readonly", :type => "text", :value => "http://localhost:3000/reports/<user id>/<restaurant id>"}/
+  .form-group
+    %label User id:
+    %input.form-control{:name => "user_id", :type => "text", :value => ""}/
+  .form-group
+    %label Restaurant id:
+    %input.form-control{:name => "restaurant_id", :type => "text", :value => ""}/
+  .form-group
+    %label Device id:
+    %input.form-control{:name => "device_id", :type => "text", :value => ""}/
+  .form-group
+    %label{:for => "input-name"} activities:
+    %textarea.form-control{:cols => "120", :name => "json", :rows => "5"}
+      :preserve
+        [
+          {"when": "2015-01-08 01:42:46 UTC", "preptime": 5490},
+          {"when": "2015-01-09 01:42:46 UTC", "preptime": 2344},
+          {"when": "2015-01-08 01:42:46 UTC", "preptime": 2779}
+        ]  
+  %button.btn.btn-success.btn-lg{:type => "submit"} Submit the Request

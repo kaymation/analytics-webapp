@@ -1,0 +1,10 @@
+- model_class = Restaurant
+= render layout: "pills" do
+  .row-fluid
+    .span4
+      %h3 Analyze your Data with a graph
+      %p= @ids.inspect
+      %p= debug(@devices)
+      %p= @reports.inspect
+    #graphspace.span8
+      = render partial: 'graphs'

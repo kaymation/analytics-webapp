@@ -1,0 +1,68 @@
+- model_class = Report
+.row-fluid
+  .span6
+    .page-header
+      %h1 Adding a Report
+    %p Adding a report is done through an HTTP URL in the following form:
+    %pre http://cheftab-demo.appspot.com/reports/&lt;user&gt;/&lt;restaurant&gt;
+    %p where the parameters are in the following form:
+    %ul
+      %li
+        %code user
+        contains the users ID
+      %li
+        %code restaurant
+        contains the restaurants ID
+    %p Certain parameters are required in the request's body.
+    %p
+      %strong Request Body
+    %ul
+      %li
+        %code device
+        \- the device_id of the device making the request.
+      %li
+        %code reports
+        \- a list of reports as a JSON string.
+    %p
+      %strong Reports
+    %p A JSON string in the following format:
+    %pre
+      :preserve
+        [
+          {"when": "2015-01-08 01:42:46 UTC", "preptime": 5490},
+          {"when": "2015-01-09 01:42:46 UTC", "preptime": 2344},
+        		  ...
+        ]    %p Each activity has the following properties:
+    %ul
+      %li
+        %code date
+        \- A date string in the format YYYY-MM-DD.
+      %li
+        %code value
+        \- A number value.
+    %p
+      %strong Response
+    %p A successful POST request will return a JSON object with the following properties
+    %ul
+      %li
+        %code success
+        \- True or False, depending on whether it was successful
+      %li
+        %code key
+        \- If the request was successful, this is the alphanumeric key of the new activity
+    %p Example:
+    %pre
+      :preserve
+        {
+        "success": true,
+        "key": "..."
+        }  .span6
+    .page-header
+      %h1 Test
+    %p
+      You can test the API by using the form below. Fill in the
+      %strong User ID
+      and
+      %strong Restaurant ID
+      for the restaurant you want to submit to.
+    = render :partial => 'form'

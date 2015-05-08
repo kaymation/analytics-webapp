@@ -9,6 +9,14 @@ gem 'rails', '4.0.4'
 # gem 'sqlite3'
 gem 'pg'
 
+gem 'puma'
+
+gem 'will_paginate', '~> 3.0'
+
+gem 'will_paginate-bootstrap'
+
+gem 'haml'
+
 gem 'rails_12factor', group: :production
 
 gem "d3-rails"
